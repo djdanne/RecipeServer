@@ -1,9 +1,9 @@
 ﻿(function (controllers) {
 	
-	var recipeController = require('./recipeController.js');
+	var receptController = require('./receptController.js');
 
 	controllers.init = function (app) {
-		recipeController.init(app);
+		receptController.init(app);
 	};
 
 })(module.exports);
