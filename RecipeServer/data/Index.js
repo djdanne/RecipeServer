@@ -1,18 +1,32 @@
-﻿(function(data) {
-
+﻿(function (data) {
+	
 	var database = require("./database");
-
+	var ObjectId = require('mongodb').ObjectID;
+	
 	data.getRecept = function (receptId, next) {
 		database.getDb(function (err, db) {
 			if (err) {
 				next(err, null);
 			}
 			else {
-				db.recept.findOne({ _id: receptId }, next);
+				db.recept.findOne({ _id: new ObjectId(receptId) }, next);
 			}
 		});
 	};
-
+	
+	data.updateRecept = function (receptDO, next) {
+		database.getDb(function (err, db) {
+			if (err) {
+				next(err, null);
+			}
+			else {
+				db.recept.update({ _id: new ObjectId(receptDO._id) }, receptDO, next);
+			}
+			
+			
+		});
+	};
+	
 	data.addRecept = function (receptDO, next) {
 		database.getDb(function (err, db) {
 			if (err) {
@@ -43,4 +57,4 @@
 			
 		});
 	};
-})
+})(module.exports);
