@@ -13,9 +13,7 @@
 				} else {
 					theDb = {
 						db: db,
-						recept: db.collection("recept"),
-						kategori: db.collection("kategori"),
-						betyg: db.collection("betyg")
+						recept: db.collection("recept")
 					};
 					next(null, theDb);
 				}

@@ -14,6 +14,18 @@
 		});
 	};
 	
+	data.getReceptList = function (next) {
+		database.getDb(function (err, db) {
+			if (err) {
+				next(err, null);
+			}
+			else {
+				db.recept.find({}).toArray(next);
+			}
+			
+		});
+	};
+	
 	data.updateRecept = function (receptDO, next) {
 		database.getDb(function (err, db) {
 			if (err) {

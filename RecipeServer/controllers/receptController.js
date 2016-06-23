@@ -3,6 +3,19 @@
 	var data = require("../data");
 
 	receptController.init = function (app) {
+		
+		app.get("/api/receptList/", function (req, res) {
+			data.getReceptList(function (err, receptListLO) {
+				if (err) {
+					res.send(400, err);
+				}
+				else {
+					res.set("Content-Type", "application/json");
+					res.send(receptListLO);
+				}
+				
+			});
+		});
 
 		app.get("/api/recept/:receptId", function (req, res) {
 
